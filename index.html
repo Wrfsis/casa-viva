@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu lar é um Ser Vivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .folheto {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .casa-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .analogia {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .analogia h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .analogia p {
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .comparacao {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #667eea30;
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .card li:before {
+            content: "❤️";
+            margin-right: 10px;
+        }
+        
+        .checklist {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .checklist h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .periodo {
+            margin-bottom: 25px;
+        }
+        
+        .periodo h3 {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .periodo ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .periodo li {
+            padding: 10px 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            line-height: 1.6;
+        }
+        
+        .periodo li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .alerta {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .alerta h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .alerta p {
+            color: #856404;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        .contato {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .contato h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .contato-info {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contato-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .contato-item {
+            font-size: 1.2em;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+        .contato-item strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .servicos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .servico {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .comparacao {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .folheto {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            body {
+                padding: 0;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .casa-icon {
+                font-size: 60px;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .analogia h2 {
+                font-size: 1.5em;
+            }
+            
+            .analogia p {
+                font-size: 1em;
+            }
+            
+            .checklist {
+                padding: 20px 15px;
+            }
+            
+            .checklist h2 {
+                font-size: 1.5em;
+            }
+            
+            .periodo h3 {
+                font-size: 1.1em;
+                padding: 10px 15px;
+            }
+            
+            .contato h2 {
+                font-size: 1.5em;
+            }
+            
+            .contato-info h3 {
+                font-size: 1.4em;
+            }
+            
+            .contato-item {
+                font-size: 1em;
+            }
+            
+            .servicos {
+                gap: 15px;
+            }
+            
+            .servico {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="folheto">
+        <div class="header">
+            <div class="casa-icon">🏠</div>
+            <h1>Seu lar é um Ser Vivo!</h1>
+            <p>E como todo ser vivo, precisa de cuidados para se manter saudável</p>
+        </div>
+        
+        <div class="content">
+            <div class="analogia">
+                <h2>🫀 Pense no seu Lar seja ele uma Casa ou Apartamento Como Seu Corpo</h2>
+                <p>
+                    Assim como você precisa de check-ups médicos, alimentação adequada e exercícios regulares, 
+                    sua casa também necessita de atenção constante. A diferença? Quando seu corpo dói, ele avisa. 
+                    Sua casa só mostra os sintomas quando o problema já está grave e o custo de reparo é muito maior!
+                </p>
+            </div>
+            
+            <div class="comparacao">
+                <div class="card">
+                    <h3>👤 Seu Corpo</h3>
+                    <ul>
+                        <li>Precisa de check-ups regulares</li>
+                        <li>Necessita limpeza e higiene</li>
+                        <li>Requer manutenção preventiva</li>
+                        <li>Pequenos problemas viram graves</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🏠 Sua Casa</h3>
+                    <ul>
+                        <li>Precisa de vistorias periódicas</li>
+                        <li>Necessita limpeza e conservação</li>
+                        <li>Requer manutenção preventiva</li>
+                        <li>Pequenos vazamentos viram enchentes</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alerta">
+                <h3>⚠️ Atenção: O Preço da Negligência</h3>
+                <p>
+                    Um vazamento pequeno ignorado pode causar infiltrações, mofo, danos estruturais e até 
+                    comprometer a fundação. Uma tomada com mau contato pode provocar um incêndio. 
+                    O custo de prevenir é SEMPRE menor que o custo de reparar!
+                </p>
+            </div>
+            
+            <div class="checklist">
+                <h2>📋 Checklist de Saúde da Sua Casa</h2>
+                
+                <div class="periodo">
+                    <h3>🗓️ MENSAL</h3>
+                    <ul>
+                        <li>Verificar torneiras e registros em busca de vazamentos</li>
+                        <li>Testar interruptores e tomadas</li>
+                        <li>Limpar ralos e sifões</li>
+                        <li>Verificar portas e janelas (fechamento e vedação)</li>
+                    </ul>
+                </div>
+                
+                <div class="periodo">
+                    <h3>📅 TRIMESTRAL</h3>
+                    <ul>
+                        <li>Inspecionar a caixa d'água (limpeza semestral)</li>
+                        <li>Verificar o quadro de distribuição elétrica</li>
+                        <li>Checar calhas e condutores de água da chuva</li>
+                        <li>Examinar paredes em busca de rachaduras ou umidade</li>
+                        <li>Testar o disjuntor diferencial (DR)</li>
+                    </ul>
+                </div>
+                
+                <div class="periodo">
+                    <h3>📆 SEMESTRAL</h3>
+                    <ul>
+                        <li>Vistoriar o telhado (telhas, cumeeiras)</li>
+                        <li>Verificar impermeabilização de áreas molhadas</li>
+                        <li>Checar sistema de esgoto e fossa (se houver)</li>
+                        <li>Revisar instalações de gás</li>
+                        <li>Lubrificar dobradiças e fechaduras</li>
+                    </ul>
+                </div>
+                
+                <div class="periodo">
+                    <h3>📅 ANUAL</h3>
+                    <ul>
+                        <li>Pintura de áreas externas e expostas</li>
+                        <li>Revisão completa da parte elétrica</li>
+                        <li>Revisão completa da parte hidráulica</li>
+                        <li>Verificar estrutura (vigas, pilares, lajes)</li>
+                        <li>Avaliar necessidade de impermeabilização</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alerta" style="background: #d4edda; border-left-color: #28a745;">
+                <h3 style="color: #155724;">💡 Dica de Ouro</h3>
+                <p style="color: #155724;">
+                    Crie um "prontuário" da sua casa! Anote a data de cada manutenção realizada, 
+                    guarde notas fiscais e registre problemas identificados. Isso ajuda a manter 
+                    o histórico e planejar as próximas ações preventivas.
+                </p>
+            </div>
+        </div>
+        
+        <div class="contato">
+            <h2>🔧 Precisa de Ajuda Profissional?</h2>
+            <p>Não deixe pequenos problemas se tornarem grandes prejuízos!</p>
+            
+            <div class="contato-info">
+                <h3>Marido de Aluguel</h3>
+                <p style="font-size: 1.3em; margin-bottom: 15px; font-weight: 600;">Wellington</p>
+                <div class="contato-item">
+                    <strong>📱 Telefone/WhatsApp:</strong>
+                    (34) 99998-1175
+                </div>
+                <div class="contato-item">
+                    <strong>📧 E-mail:</strong>
+                    wrfcontatos@gmail.com
+                </div>
+                
+                <div style="display: flex; gap: 15px; justify-content: center; margin: 25px 0; flex-wrap: wrap;">
+                    <a href="https://wa.me/5534999981175?text=Olá!%20Vi%20seu%20folheto%20e%20gostaria%20de%20solicitar%20um%20orçamento." 
+                       style="background: #25D366; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.2s;">
+                        💬 Chamar no WhatsApp
+                    </a>
+                    <a href="mailto:wrfcontatos@gmail.com?subject=Solicitação%20de%20Orçamento&body=Olá!%20Vi%20seu%20folheto%20e%20gostaria%20de%20solicitar%20um%20orçamento." 
+                       style="background: #EA4335; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.2s;">
+                        📧 Enviar E-mail
+                    </a>
+                </div>
+                
+                <div class="servicos">
+                    <div class="servico">⚡ Elétrica</div>
+                    <div class="servico">💧 Hidráulica</div>
+                    <div class="servico">🔨 Reparos Gerais</div>
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 1.1em;">
+                    Atendimento rápido e profissional para manter sua casa sempre saudável!
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
